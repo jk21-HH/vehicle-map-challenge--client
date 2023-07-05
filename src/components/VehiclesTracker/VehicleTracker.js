@@ -8,36 +8,38 @@ import Car from "../Car/Car";
 
 import classes from "./VehicleTracker.module.css";
 
+// costum hook for fetching
+
 import useHttp from "../../hooks/use-http";
 
-const serverURL = process.env.REACT_APP_SERVER_URL || "http://localhost:3000";
+// diffrent constans that I use and stored them in another file
+
+import {
+  serverURL,
+  vehiclesApi,
+  startingPerimiter,
+  centerPoint,
+} from "../../data/constants";
 
 const VehicleTracker = () => {
   const [vehicles, setVehicles] = useState([]);
   const [selectedVehicles, setSelectedVehicles] = useState([]);
-  const [perimeter, setPerimeter] = useState([
-    [-0.0493916683, 51.4694976807],
-    [-0.004475904446425087, 51.514413461242604],
-    [-0.004475904446425087, 51.514413461242604],
-    [-0.0943074321535749, 51.514413461242604],
-    [-0.0943074321535749, 51.514413461242604],
-    [-0.0493916683, 51.4694976807],
-  ]);
+  const [perimeter, setPerimeter] = useState(startingPerimiter);
 
-  const [startingPoint, setStartingPoint] = useState([
-    -0.0493916683, 51.4694976807,
-  ]);
+  const [startingPoint, setStartingPoint] = useState(centerPoint);
 
   const { setState } = useHttp();
 
   useEffect(() => {
     setState(
       {
-        url: `${serverURL}/vehicles/getAllVehiclesLocation`,
+        url: `${serverURL}/${vehiclesApi.getAllVehiclesLocation}`,
       },
       setVehicles
     );
   }, [setState]);
+
+  // calculate the radius from the selected point in order to find all the cars in this radius
 
   const calculatePerimitar = useCallback((point, radius) => {
     const bounds = L.latLng(point).toBounds(radius);
@@ -113,7 +115,7 @@ const VehicleTracker = () => {
 
     setState(
       {
-        url: `${serverURL}/vehicles/getVehiclesByPerimeter`,
+        url: `${serverURL}/${vehiclesApi.getVehiclesByPerimeter}`,
         method: "POST",
         body: { perimeter },
         headers: {
