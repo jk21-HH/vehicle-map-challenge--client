@@ -1,0 +1,9 @@
+.car {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #3c569e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+}

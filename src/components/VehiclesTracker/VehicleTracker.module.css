@@ -1,0 +1,11 @@
+.tracker {
+  height: 400px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.map {
+  height: 400px;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
