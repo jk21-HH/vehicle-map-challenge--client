@@ -10,6 +10,8 @@ import classes from "./VehicleTracker.module.css";
 
 import useHttp from "../../hooks/use-http";
 
+const serverURL = process.env.REACT_APP_SERVER_URL || "http://localhost:3000";
+
 const VehicleTracker = () => {
   const [vehicles, setVehicles] = useState([]);
   const [selectedVehicles, setSelectedVehicles] = useState([]);
@@ -31,7 +33,7 @@ const VehicleTracker = () => {
   useEffect(() => {
     setState(
       {
-        url: "/vehicles/getAllVehiclesLocation",
+        url: `${serverURL}/vehicles/getAllVehiclesLocation`,
       },
       setVehicles
     );
@@ -111,7 +113,7 @@ const VehicleTracker = () => {
 
     setState(
       {
-        url: "/vehicles/getVehiclesByPerimeter",
+        url: `${serverURL}/vehicles/getVehiclesByPerimeter`,
         method: "POST",
         body: { perimeter },
         headers: {
