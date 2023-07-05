@@ -10,7 +10,10 @@ import classes from "./VehicleTracker.module.css";
 
 import useHttp from "../../hooks/use-http";
 
-const serverURL = process.env.REACT_APP_SERVER_URL || "http://localhost:3000";
+const serverURL =
+  process.env.NODE_ENV === "production"
+    ? "https://backend-vehicle-map-challenge.onrender.com"
+    : "http://localhost:3000";
 
 const VehicleTracker = () => {
   const [vehicles, setVehicles] = useState([]);
@@ -30,6 +33,7 @@ const VehicleTracker = () => {
 
   const { setState } = useHttp();
 
+  console.log(serverURL);
   useEffect(() => {
     setState(
       {
