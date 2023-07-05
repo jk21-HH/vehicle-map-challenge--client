@@ -117,7 +117,7 @@ const VehicleTracker = () => {
 
     setState(
       {
-        url: `${serverURL}/vehicles/getVehiclesByPerimeter`,
+        url: `https://backend-vehicle-map-challenge.onrender.com/vehicles/getVehiclesByPerimeter`,
         method: "POST",
         body: { perimeter },
         headers: {
