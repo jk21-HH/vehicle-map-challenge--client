@@ -1,7 +1,6 @@
 // diffrent constants
 
-export const serverURL =
-  process.env.REACT_APP_SERVER_URL
+export const serverURL = "https://backend-vehicle-map-challenge.onrender.com";
 
 export const vehiclesApi = {
   getAllVehiclesLocation: "vehicles/getAllVehiclesLocation",
