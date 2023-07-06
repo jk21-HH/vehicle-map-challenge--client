@@ -88,7 +88,7 @@ const VehicleTracker = () => {
 
     map.on("click", handleMapClick);
 
-    // distroys the map and clears the event
+    // clean up function: clear the event
 
     return () => {
       map.remove();
